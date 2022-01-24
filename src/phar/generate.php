@@ -11,7 +11,7 @@ class Logger
 }
 
 // 引数はファイル名
-$phar = new \Phar('Phar/exploit.phar');
+$phar = new \Phar('phar/exploit.phar');
 // Pharの書き込み操作のバッファリングを開始
 $phar->startBuffering();
 // PharアーカイブのPHPローダ(あるいは起動スタブ)を設定する

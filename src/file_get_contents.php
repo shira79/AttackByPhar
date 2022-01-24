@@ -3,12 +3,12 @@
 include('Logger.php');
 
 $filepath = $_GET['filepath'];
+
+//ログを書き込む
+$logger = new Logger('get|' .$filepath);
+
 echo file_get_contents($filepath);
 
 ?>
 
-<h1>check attacking</h1>
-
-<ul>
-    <li><a href="/">go back</a></li>
-</ul>
+<div><li><a href="/">go back</a></li></div>

@@ -1,10 +1,14 @@
-# 概要
+# Pharを使った安全でないでシリアライゼーションのデモ
 
-Pharを使った安全でないでシリアライゼーションのデモ
+## 概要
 
-# 環境設定
+Phar Deserializationは、Pharメタデータが展開される際に、デシリアライゼーションが行われることを悪用した脆弱性。
 
-php8未満ではPharを使用した安全でないデシリアライゼーションは成立しない。
+Zennに投稿した説明記事 : [PHPerが知っておきたいPhar Deserializationという脆弱性の話](https://zenn.dev/shlia/articles/9932e906cc58ab)
+
+## 環境設定
+
+PHP8未満ではPharを使用した安全でないデシリアライゼーションは成立しない。
 https://wiki.php.net/rfc/phar_stop_autoloading_metadata
 
 dockerfileにて、phpiniに`phar.readonly=off`を追記している。
@@ -21,14 +25,14 @@ docker run --rm -p 8000:80 -v `pwd`/src:/var/www/html php-phar
 docker exec -it コンテナ名 bash
 ```
 
-# 攻撃手順
-## Pharを生成
+## 攻撃手順
+### Pharを生成
 コンテナの中で`php phar/generate.php` を実行すると`exploit.phar`というファイルが生成される。
 
-## Pharをアップロードする
+### Pharをアップロードする
 `http://localhost:8000/`からファイルをuploadする
 
-## アップロードしたPharを参照する
+### アップロードしたPharを参照する
 
 `http://localhost:8000/file_get_contents.php?filepath=phar://uploads/exploit.phar/hoge.txt`にアクセス
 
